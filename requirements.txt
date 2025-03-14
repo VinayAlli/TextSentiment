@@ -1,0 +1,9 @@
+tensorflow>=2.4.0
+tf-keras
+streamlit>=1.0.0
+numpy>=1.19.0
+transformers>=4.0.0
+torch>=1.7.0
+diffusers>=0.3.0
+
+
