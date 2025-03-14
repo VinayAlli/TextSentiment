@@ -12,7 +12,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding
 
 # --------- SENTIMENT ANALYSIS FUNCTIONS ---------
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_sentiment_model():
     # Define a custom SimpleRNN if required by the saved model.
     from tensorflow.keras.layers import SimpleRNN as OriginalSimpleRNN
@@ -24,7 +24,7 @@ def load_sentiment_model():
     model = load_model('simple_rnn_imdb.h5', custom_objects={'SimpleRNN': CustomSimpleRNN})
     return model
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data
 def load_word_index():
     # Load the IMDb dataset word index
     word_index = imdb.get_word_index()
@@ -44,7 +44,7 @@ def predict_sentiment(text, model, word_index):
     return sentiment, prediction[0][0]
 
 # --------- TEXT GENERATION (RAG-inspired) FUNCTIONS ---------
-@st.cache(allow_output_mutation=True)
+@st.cache_data
 def load_text_generator():
     # Load GPT-2 for text generation (simulate a RAG explanation)
     text_generator = pipeline("text-generation", model="gpt2")
